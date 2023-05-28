@@ -2,11 +2,17 @@
 
 const char* getNumberWord(int num) {
     const char* words[] = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"};
+    const char* negativeWord = "negative";
 
-    if (num >= 0 && num <= 10)
+    if (num >= -10 && num <= 10) {
+        if (num < 0) {
+            printf("%s ", negativeWord);
+            num = -num;
+        }
         return words[num];
-    else
+    } else {
         return "";
+    }
 }
 
 const char* getSumWord(int sum) {
@@ -38,7 +44,16 @@ int main() {
 
     sum = num1 + num2;
 
-    printf("The sum is: %s + %s = %s\n", getNumberWord(num1), getNumberWord(num2), getSumWord(sum));
+    printf("The sum is: ");
+    printf("%s + %s = ", getNumberWord(num1), getNumberWord(num2));
+
+    if (sum < 0) {
+        printf("%s ", getNumberWord(sum));
+    } else {
+        printf("%s", getSumWord(sum));
+    }
+
+    printf("\n");
 
     return 0;
 }
